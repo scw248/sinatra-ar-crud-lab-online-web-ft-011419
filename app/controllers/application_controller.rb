@@ -16,11 +16,26 @@ class ApplicationController < Sinatra::Base
   end
   
   post '/articles' do
-    # @article = Article.new(params[:article])
     
-    Article.create(:title => params[:title], :content => params[:content])
-    
-    # @articles = Article.all
+    @new_article = Article.create(:title => params[:article] [:title], :content => params[:article][:content])
+    redirect "/articles/#{@new_article.id}" 
+  end
+  
+  get '/articles' do
+    @articles = Article.all
     erb :index
+  end
+  
+  get '/articles/:id' do
+    @article = Article.find(params[:id])
+    erb :show
+  end
+  
+  get '/articles/:id/edit' do
+    @article = Article.find(params[:id])
+    erb :edit
+  end
+  
+  post '/articles/:id/delete'
   end
 end
