@@ -41,4 +41,6 @@ class ApplicationController < Sinatra::Base
     @article.update(params[:article])
     redirect "/articles/#{@article.id}" 
   end
+  
+  
 end
